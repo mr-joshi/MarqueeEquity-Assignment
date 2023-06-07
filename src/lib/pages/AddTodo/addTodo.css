@@ -1,0 +1,14 @@
+.addTodoMain{
+  margin-bottom: 16px;
+}
+.addTodoMain-buttons{
+  display: flex ;
+  align-items: center;
+  justify-content: space-between;
+}
+.litagsAddtodo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
