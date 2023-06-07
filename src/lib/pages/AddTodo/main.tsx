@@ -17,6 +17,7 @@ const TodoList: React.FC = () => {
         id: Date.now(),
         text: newTodoText,
         subTasks: [],
+        completed:false
       };
       addTodo(newTodo);
       setNewTodoText('');
@@ -58,6 +59,7 @@ const TodoList: React.FC = () => {
             id={todo.id}
             text={todo.text}
             subTasks={todo.subTasks}
+            completed={todo.completed}
           />
         ))
       ) : (

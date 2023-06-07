@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
+  Checkbox,
   Collapse,
   FormControl,
   FormLabel,
@@ -22,10 +23,11 @@ interface TodoItemProps {
     id: number;
     text: string;
   }[];
+  completed:boolean;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks }) => {
-  const { deleteTodo, addSubTask, deleteSubTask } = useContext(TodoContext);
+const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks,completed }) => {
+  const { deleteTodo, addSubTask, deleteSubTask,todoCompleted } = useContext(TodoContext);
   const [newSubTaskText, setNewSubTaskText] = useState("");
   const { isOpen, onToggle } = useDisclosure();
   const toast = useToast();
@@ -70,12 +72,19 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks }) => {
       isClosable: true,
     });
   }
+  const handleCompleteTodo=(id:number)=>{
+    todoCompleted(id);
+    console.log(id)
+  }
 
   return (
     <Box className="addTodoMain">
       <div className="addTodoMain-buttons">
         <p style={{fontSize:'18px' ,fontWeight:'700'}}>{text}</p>
-        <div>
+        <div className="addtodo-buttondata">
+        <Checkbox  colorScheme='green' onChange={()=>handleCompleteTodo(id)}isChecked={completed} >
+          {completed?'Completed':'Pending'}
+        </Checkbox>
         <Button onClick={onToggle} mt={2}>
           {isOpen ? "Hide Sub-Tasks" : "Add/Show Sub-Tasks"}
         </Button>

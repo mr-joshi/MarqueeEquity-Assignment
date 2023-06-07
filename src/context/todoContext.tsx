@@ -1,9 +1,9 @@
-
 import React, { ReactNode, createContext, useState } from 'react';
 
 interface Todo {
   id: number;
   text: string;
+  completed: boolean;
   subTasks: {
     id: number;
     text: string;
@@ -16,6 +16,7 @@ interface TodoContextProps {
   deleteTodo: (id: number) => void;
   addSubTask: (id: number, newSubTask: { id: number; text: string }) => void;
   deleteSubTask: (id: number, subTaskId: number) => void;
+  todoCompleted: (id: number) => void;
 }
 
 const TodoContext = createContext<TodoContextProps>({
@@ -24,9 +25,10 @@ const TodoContext = createContext<TodoContextProps>({
   deleteTodo: () => {},
   addSubTask: () => {},
   deleteSubTask: () => {},
+  todoCompleted: () => {},
 });
 
-const TodoProvider = ({ children }:{children:ReactNode}) => {
+const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodo = (newTodo: Todo) => {
@@ -64,8 +66,21 @@ const TodoProvider = ({ children }:{children:ReactNode}) => {
     setTodos(updatedTodos);
   };
 
+  const todoCompleted = (id: number) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, deleteTodo, addSubTask, deleteSubTask }}>
+    <TodoContext.Provider value={{ todos, addTodo, deleteTodo, addSubTask, deleteSubTask, todoCompleted }}>
       {children}
     </TodoContext.Provider>
   );

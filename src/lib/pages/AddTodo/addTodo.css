@@ -12,3 +12,7 @@
   align-items: center;
   margin-bottom: 10px;
 }
+.addtodo-buttondata{
+      display: flex;
+    flex-wrap: wrap;
+}
