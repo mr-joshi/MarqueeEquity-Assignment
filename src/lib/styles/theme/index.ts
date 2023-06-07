@@ -8,8 +8,7 @@ export const theme = extendTheme({
     body: "Plus Jakarta Sans, sans-serif",
   },
   components: {
-    // Button: {
-    // }
+  
   },
   config,
 });

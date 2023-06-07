@@ -1,4 +1,3 @@
-// TodoList.tsx
 
 import React, { useContext, useState } from 'react';
 import TodoItem from './addTodo';
