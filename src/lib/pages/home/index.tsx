@@ -29,7 +29,6 @@ const Home = () => {
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
 
     if (emailRegex.test(email) && passwordRegex.test(password)) {
-      console.log(email);
       if (email === validEmail && password === validPassword) {
         const token =
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InRlc3RAMTIzIn0.M3_mbyV1eAa_9BNXFVH3e_32WtZYAzP1mh2WFOVw3bo";

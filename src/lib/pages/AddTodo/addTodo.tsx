@@ -74,17 +74,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks,completed }) => 
   }
   const handleCompleteTodo=(id:number)=>{
     todoCompleted(id);
-    console.log(id)
   }
-
   return (
     <Box className="addTodoMain">
       <div className="addTodoMain-buttons">
-        <p style={{fontSize:'18px' ,fontWeight:'700'}}>{text}</p>
+        <p className={`todoHeading ${completed?'completedTask':''}`}>{text}</p>
         <div className="addtodo-buttondata">
-        <Checkbox  colorScheme='green' onChange={()=>handleCompleteTodo(id)}isChecked={completed} >
-          {completed?'Completed':'Pending'}
-        </Checkbox>
+        <Checkbox style={{marginRight:'10px'}} colorScheme='green' onChange={()=>handleCompleteTodo(id)}isChecked={completed} />
         <Button onClick={onToggle} mt={2}>
           {isOpen ? "Hide Sub-Tasks" : "Add/Show Sub-Tasks"}
         </Button>
@@ -114,7 +110,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks,completed }) => 
             {subTasks.map((subTask) => (
               <ListItem key={subTask.id} >
                 <div className="litagsAddtodo">
-                <span>{subTask.text}</span>
+                <span className={`${completed?'completedTask':''}`}>{subTask.text}</span>
                 <Button
                   onClick={() => handleSubTaskDelete(subTask.id)}
                   ml={2}

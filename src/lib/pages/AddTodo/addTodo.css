@@ -16,3 +16,10 @@
       display: flex;
     flex-wrap: wrap;
 }
+.todoHeading{
+  font-size: 18px;
+  font-weight: 700;
+}
+.completedTask{
+  color: #62FACF;
+}
