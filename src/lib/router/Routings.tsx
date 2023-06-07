@@ -6,13 +6,19 @@ import RequireAuth from "../components/auth/RequireAuth";
 import Page404 from "../pages/404";
 
 import { routes, privateRoutes } from "./routes";
+import NormalRoutes from "../components/auth/NormalRoutes";
 
 const Routings = () => {
   return (
     <Suspense>
       <Routes>
-        {routes.map((routeProps) => (
-          <Route {...routeProps} key={routeProps.path as string} />
+        
+        {routes.map(({element,...routeProps}) => (
+          <Route {...routeProps} element={
+            <NormalRoutes>
+              {element}
+            </NormalRoutes>
+          } key={routeProps.path as string} />
         ))}
         {privateRoutes.map(({ element, ...privateRouteProps }) => (
           <Route

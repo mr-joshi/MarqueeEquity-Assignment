@@ -1,25 +1,27 @@
 import { Navigate } from "react-router-dom";
 
-type PrivateRouteProps = {
+type NormalRoutesProps = {
   children: React.ReactNode;
 };
 
-const RequireAuth = ({
+const NormalRoutes = ({
   children,
-}: PrivateRouteProps) => {
+}: NormalRoutesProps) => {
   const token = localStorage.getItem("token");
+
 //their should be backend apito verify token as we have nothig so iam doing this hack
+
   let isAuthenticated = false;
   if (token && token?.length===144 ) isAuthenticated = true;
   else {
     isAuthenticated = false;
   }
 
-  return isAuthenticated ? (
+  return !isAuthenticated ? (
     (children as React.ReactElement)
   ) : (
-    <Navigate to={'/'} />
+    <Navigate to={'/addTodo'} />
   );
 };
 
-export default RequireAuth;
+export default NormalRoutes;
