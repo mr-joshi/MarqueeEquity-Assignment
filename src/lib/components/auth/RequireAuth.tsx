@@ -2,7 +2,6 @@ import { Navigate } from "react-router-dom";
 
 type PrivateRouteProps = {
   children: React.ReactNode;
-  redirectTo?: string;
 };
 
 const RequireAuth = ({

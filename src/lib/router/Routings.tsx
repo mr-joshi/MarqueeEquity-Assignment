@@ -17,9 +17,7 @@ const Routings = () => {
         {privateRoutes.map(({ element, ...privateRouteProps }) => (
           <Route
             element={
-              <RequireAuth
-                redirectTo={`/login?redirectTo=${privateRouteProps.path}`}
-              >
+              <RequireAuth>
                 {element}
               </RequireAuth>
             }
