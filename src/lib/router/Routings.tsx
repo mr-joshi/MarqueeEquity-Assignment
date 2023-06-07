@@ -1,12 +1,3 @@
-/**
- * @note
- * for hook alternative of route element composition:
- * - https://reactrouter.com/docs/en/v6/upgrading/v5#use-useroutes-instead-of-react-router-config
- * - https://reactrouter.com/docs/en/v6/examples/route-objects
- *
- * might need to take notes on:
- * - https://reactrouter.com/docs/en/v6/upgrading/v5#note-on-link-to-values
- */
 
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
