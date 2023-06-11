@@ -1,6 +1,7 @@
 // TodoItem.tsx
 
 import React, { useContext, useState } from "react";
+
 import {
   Box,
   Button,
@@ -14,6 +15,8 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import {   DeleteIcon} from '@chakra-ui/icons'
+
 import { TodoContext } from "../../../context/todoContext";
 import './addTodo.css'
 interface TodoItemProps {
@@ -82,10 +85,10 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks,completed }) => 
         <div className="addtodo-buttondata">
         <Checkbox style={{marginRight:'10px'}} colorScheme='green' onChange={()=>handleCompleteTodo(id)}isChecked={completed} />
         <Button onClick={onToggle} mt={2}>
-          {isOpen ? "Hide Sub-Tasks" : "Add/Show Sub-Tasks"}
+          {isOpen ? "Hide " : "Show Sub-Tasks"}
         </Button>
         <Button onClick={() => handleTodoDelete(id)} mt={2} style={{marginLeft:'10px'}}colorScheme="red">
-          Delete
+        <DeleteIcon/>
         </Button>
         </div>
       </div>
@@ -116,7 +119,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, subTasks,completed }) => 
                   ml={2}
                   colorScheme="red"
                 >
-                  Delete Sub-Task
+                <DeleteIcon/>
                 </Button>
                 </div>
               </ListItem>

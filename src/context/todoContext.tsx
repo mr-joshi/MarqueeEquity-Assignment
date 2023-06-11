@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useState } from 'react';
+import React, { ReactNode, createContext, useEffect, useState } from 'react';
 
 interface Todo {
   id: number;
@@ -30,14 +30,25 @@ const TodoContext = createContext<TodoContextProps>({
 
 const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+
 
   const addTodo = (newTodo: Todo) => {
+    let allTodos=[...todos, newTodo]
     setTodos([...todos, newTodo]);
+    localStorage.setItem('todos', JSON.stringify(allTodos));
   };
 
   const deleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   };
 
   const addSubTask = (id: number, newSubTask: { id: number; text: string }) => {
