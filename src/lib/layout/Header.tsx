@@ -9,6 +9,7 @@ const Header = () => {
   const handleLogOut = () => {
     setShowLogout(false)
     localStorage.removeItem("token");
+    localStorage.removeItem("todos")
     navigate('/')
   };
   const show = localStorage.getItem("token");
